@@ -21,7 +21,7 @@ class BodyController extends Controller
      */
     public function create()
     {
-        //
+        return view(view: 'bodies.create');
     }
 
     /**
@@ -29,7 +29,11 @@ class BodyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $body  = new Body();
+        $body->name = $request->input('name');
+        $body->save();
+ 
+        return redirect()->route('bodies.index')->with('success', "{$body->name} sikeresen létrehozva");
     }
 
     /**
@@ -37,7 +41,8 @@ class BodyController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $body = Body::find($id);
+        return view('bodies.show', compact('body'));
     }
 
     /**
@@ -45,7 +50,8 @@ class BodyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $body = Body::find($id);
+        return view('bodies.edit', compact('body'));
     }
 
     /**
@@ -53,7 +59,11 @@ class BodyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $body  = Body::find($id);
+        $body->name = $request->input('name');
+        $body->save();
+
+        return redirect()->route('bodies.index')->with('success', "{$body->name} sikeresen módosítva");
     }
 
     /**
@@ -61,6 +71,11 @@ class BodyController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $body = Body::find($id);
+        if ($body) {
+            $body->delete();
+            return redirect()->route('bodies.index')->with('success', 'Gyártó sikeresen törölve.');
+        }
+        return redirect()->route('bodies.index')->with('error', 'Hiba történt a törlés során.');
     }
 }
