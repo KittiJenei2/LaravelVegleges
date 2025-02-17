@@ -21,5 +21,10 @@ Route::get('/makers/{maker}', [MakerController::class, 'show'])->name('makers.sh
 
 Route::resource('bodies', BodyController::class);
 Route::get('/bodies/create', [BodyController::class, 'create'])->name('bodies.create');
+Route::patch('/bodies/{body}', [BodyController::class, 'update'])->name('bodies.update');
+Route::delete('/bodies/{body}', [BodyController::class, 'destroy'])->name('bodies.destroy');
+Route::get('/bodies/{body}/edit', [BodyController::class, 'edit'])->name('bodies.edit');
+Route::get('/bodies/{body}', [BodyController::class, 'show'])->name('bodies.show');
+
 //Route::resource('fuels', FuelController::class);
 //Route::resource('models', ModelController::class);
