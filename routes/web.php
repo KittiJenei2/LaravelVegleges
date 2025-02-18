@@ -12,7 +12,7 @@ Route::get('/makers', [MakerController::class, 'index'])->name('makers.index');
 Route::get('/bodies', [BodyController::class, 'index'])->name('bodies.index');
 
 //route-ok létrehozása
-Route::resource('makers', MakerController::class);
+//Route::resource('makers', MakerController::class);
 Route::get('/makers/create', [MakerController::class, 'create'])->name('makers.create');
 Route::patch('/makers/{maker}', [MakerController::class, 'update'])->name('makers.update');
 Route::delete('/makers/{maker}', [MakerController::class, 'destroy'])->name('makers.destroy');
