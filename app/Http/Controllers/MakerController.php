@@ -84,4 +84,13 @@ class MakerController extends Controller
         }
         return redirect()->route('makers.index')->with('error', 'Hiba történt a törlés során.');
     }
+
+    public function fetchModels($makerId)
+	{
+		$maker = Maker::find($makerId);
+		$result['data'] = $maker->models;
+		//$result['logo'] = $this->getLogo($entity);
+
+		return response()->json($result);
+	}
 }

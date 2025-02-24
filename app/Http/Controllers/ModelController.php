@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Model;
+use App\Http\Requests\BasicRequest;
 
 class ModelController extends Controller
 {

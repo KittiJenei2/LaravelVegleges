@@ -8,26 +8,20 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('models', function (Blueprint $table) {
+        Schema::create('bodies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('makers_id');
-            $table->foreign('makers_id')->references('id')->on('makers');
             $table->string('name')->index();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('models');
+        Schema::dropIfExists('bodies');
     }
 };
