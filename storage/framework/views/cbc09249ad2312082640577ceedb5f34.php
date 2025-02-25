@@ -2,7 +2,7 @@
 
 <?php $__env->startSection('content'); ?>
     <div>
-        <?php echo $__env->make('error', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('error', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
         <form action="<?php echo e(route('makers.update', $maker->id)); ?>" method="post">
             <?php echo csrf_field(); ?>
             <?php echo method_field('PATCH'); ?>
@@ -15,4 +15,4 @@
         </form>
     </div>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel_projekt\resources\views/makers/edit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel_projekt\resources\views/makers/edit.blade.php ENDPATH**/ ?>

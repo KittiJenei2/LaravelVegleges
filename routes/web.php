@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MakerController;
 use App\Http\Controllers\BodyController;
+use App\Http\Controllers\ModelController;
+use App\Http\Controllers\VehicleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,6 +15,7 @@ Route::get('/makers/{maker}/fetch-models', [MakerController::class, 'fetchModels
 Route::get('/makers', [MakerController::class, 'index'])->name('makers.index');
 Route::get('/bodies', [BodyController::class, 'index'])->name('bodies.index');
 Route::get('/models', [ModelController::class, 'index'])->name('models.index');
+
 
 //route-ok létrehozása
 //Route::resource('makers', MakerController::class);
@@ -31,5 +34,6 @@ Route::get('/bodies/{body}', [BodyController::class, 'show'])->name('bodies.show
 
 Route::resource('models', ModelController::class);
 
+Route::resource('vehicles', VehicleController::class);
+
 //Route::resource('fuels', FuelController::class);
-//Route::resource('models', ModelController::class);
