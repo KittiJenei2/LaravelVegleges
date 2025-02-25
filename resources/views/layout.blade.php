@@ -20,6 +20,7 @@
                     <li><a href="{{ route('makers.index') }}">Gyártók</a></li>
                     <li><a href="{{ route('bodies.index') }}">Karosszériák</a></li>
                     <li><a href="{{ route('models.index') }}">Modellek</a></li>
+                    <li><a href="{{ route('vehicles.index') }}">Járművek</a></li>
                 </ul>
             </nav>
         </div>
