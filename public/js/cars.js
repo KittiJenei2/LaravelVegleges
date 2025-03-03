@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Manufacturer Change
-    $('#select-maker').change(function () {
+    $('#select-makers').change(function () {
         // Manufacturer id
         var id = $(this).val();
 
@@ -32,7 +32,7 @@ $(document).ready(function() {
                     }
                 }
                 // Changing logo when exists
-                len = 0;
+                /*len = 0;
                 if (response['logo'] != null) {
                     len = response['logo'].length;
                 }
@@ -40,7 +40,8 @@ $(document).ready(function() {
                     $("#logo").attr('src', response['logo']);
                 } else {
                     $("#logo").attr('src', '');
-                }
+                }*/
             }
         });
     });
+})
