@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
+use App\Models\Maker;
+use App\Models\Model;
+use App\Models\Body;
 use App\Http\Requests\BasicRequest;
 
 class VehicleController extends Controller
@@ -22,7 +25,11 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        return view(view: 'vehicles.create');
+        $makers = Maker::all();
+        $models = Model::all();
+        $bodies = Body::all();
+
+        return view('vehicles.create', compact('makers', 'models', 'bodies'));
     }
 
     /**
@@ -30,7 +37,16 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $vehicle  = new Vehicle();
+        $vehicle->makers_id;
+        $vehicle->models_id;
+        $vehicle->bodies_id;
+        $vehicle->reg_plate = $request->input('reg_plate');
+        $vehicle->vin = $request->input('vin');
+        $vehicle->save();
+ 
+        return redirect()->route('vehicles.index')->with('success', "{$vehicle->reg_plate} sikeresen létrehozva");
     }
 
     /**

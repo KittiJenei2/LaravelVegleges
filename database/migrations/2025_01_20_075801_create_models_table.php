@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('models', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('makers_id');
-            $table->foreign('makers_id')->references('id')->on('makers');
+            $table->unsignedBigInteger('maker_id');
+            $table->foreign('maker_id')->references('id')->on('makers');
             $table->string('name')->index();
         });
     }
