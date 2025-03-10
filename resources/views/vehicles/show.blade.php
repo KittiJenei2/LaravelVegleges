@@ -1,9 +1,9 @@
 @extends('layout')
 
 @section('content')
-    <h1>"{{ $vehicle->name }}" Jármű</h1>
+    <h1>"{{ $vehicle->reg_plate }}" Jármű</h1>
     <div class="row">
         <div>{{ $vehicle->id }}</div>
-        <div>{{$vehicle->name}}</div>
+        <div>{{$vehicle->reg_plate}}</div>
     </div>
 @endsection 

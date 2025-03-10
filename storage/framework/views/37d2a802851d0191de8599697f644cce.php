@@ -25,24 +25,27 @@
                 <td><?php echo e($vehicle->id); ?></td>
                 <td><?php echo e($vehicle->vin); ?></td>
                 <td><?php echo e($vehicle->reg_plate); ?></td>
-                <td><?php echo e($vehicle->makers_id); ?></td>
-                <td><?php echo e($vehicle->bodies_id); ?></td>
-                <td><?php echo e($vehicle->models_id); ?></td>
+                <td><?php echo e($vehicle->maker->name ?? 'Nincs adat'); ?></td>
+                <td><?php echo e($vehicle->model->name ?? 'N/A'); ?></td>
+                <td><?php echo e($vehicle->body->name ?? 'N/A'); ?></td>
+
                 <td class="actions">
-    <a href="<?php echo e(route('vehicles.show', $maker->id)); ?>" class="btn btn-info action-btn">
+    <a href="<?php echo e(route('vehicles.show', $vehicle->maker->id ?? 0)); ?>" class="btn btn-info action-btn">
         <i class="fa fa-binoculars" title="Mutat"></i> Mutat
     </a>
-    <a href="<?php echo e(route('vehicles.edit', $maker->id)); ?>" class="btn btn-warning action-btn">
+    <a href="<?php echo e(route('vehicles.edit', $vehicle->maker->id ?? 0)); ?>" class="btn btn-warning action-btn">
         <i class="fa fa-edit edit" title="Módosít"></i> Módosít
     </a>
-    <form action="<?php echo e(route('vehicles.destroy', $maker->id)); ?>" method="POST" class="inline-form">
-        <?php echo csrf_field(); ?>
-        <?php echo method_field('DELETE'); ?>
-        <button type="submit" class="btn btn-danger action-btn" name="btn-del-fuel">
-            <i class="fa fa-trash-can trash" title="Töröl"></i> Töröl
-        </button>
-    </form>
+    <form action="<?php echo e(route('vehicles.destroy', $vehicle->id)); ?>" method="POST" class="inline-form">
+    <?php echo csrf_field(); ?>
+    <?php echo method_field('DELETE'); ?>
+    <button type="submit" class="btn btn-danger action-btn">
+        <i class="fa fa-trash-can trash" title="Töröl"></i> Töröl
+    </button>
+</form>
+
 </td>
+
             </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>
