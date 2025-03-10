@@ -16,9 +16,10 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::all();
-        return view('vehicles.index', ['vehicles' => $vehicles]);
+        $vehicles = Vehicle::with(['maker', 'model', 'body'])->get();
+        return view('vehicles.index', compact('vehicles'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,9 +40,9 @@ class VehicleController extends Controller
     {
 
         $vehicle  = new Vehicle();
-        $vehicle->makers_id;
-        $vehicle->models_id;
-        $vehicle->bodies_id;
+        $vehicle->makers_id = $request->input('makers_id');
+        $vehicle->models_id = $request->input('models_id');
+        $vehicle->bodies_id = $request->input('bodies_id');
         $vehicle->reg_plate = $request->input('reg_plate');
         $vehicle->vin = $request->input('vin');
         $vehicle->save();
@@ -54,7 +55,8 @@ class VehicleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $vehicle = Vehicle::find($id);
+        return view('vehicles.show', compact('vehicle'));
     }
 
     /**
@@ -68,9 +70,13 @@ class VehicleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BasicRequest $request, string $id)
     {
-        //
+        $vehicle  = Vehicle::find($id);
+        $vehicle->name = $request->input('reg_plate');
+        $vehicle->save();
+
+        return redirect()->route('vehicles.index')->with('success', "{$vehicle->reg_plate} sikeresen módosítva");
     }
 
     /**
@@ -78,6 +84,11 @@ class VehicleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $vehicle = Vehicle::find($id);
+        if ($vehicle) {
+            $vehicle->delete();
+            return redirect()->route('vehicles.index')->with('success', 'Jármű sikeresen törölve.');
+        }
+        return redirect()->route('vehicles.index')->with('error', 'Hiba történt a törlés során.');
     }
 }

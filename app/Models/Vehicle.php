@@ -2,25 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 
-class Vehicle extends Model
+class Vehicle extends EloquentModel
 {
     public $timestamps = false;
 
     function maker()
     {
-        return $this->belongsTo(Maker::class);
+        return $this->belongsTo(Maker::class, 'makers_id');
     }
 
     function model()
     {
-        return $this->belongsTo(Model::class);
+        return $this->belongsTo(Model::class, 'models_id');
     }
 
     function body()
     {
-        return $this->belongsTo(Body::class);
+        return $this->belongsTo(Body::class, 'bodies_id');
     }
 }
