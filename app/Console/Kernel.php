@@ -13,6 +13,11 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+
+     protected $commands = [
+        Commands\Install::class,
+    ];
+
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
@@ -27,6 +32,9 @@ class Kernel extends ConsoleKernel
     {
         $this->load(__DIR__.'/Commands');
 
-        require base_path('routes/console.php');
+        require base_path('routes/console.php');  
     }
+
+
+    
 }

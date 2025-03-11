@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 class Vehicle extends EloquentModel
 {
     public $timestamps = false;
+    protected $primaryKey = 'id';
+
 
     function maker()
     {

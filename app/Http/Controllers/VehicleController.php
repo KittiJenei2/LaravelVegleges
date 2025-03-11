@@ -64,20 +64,35 @@ class VehicleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+    $vehicle = Vehicle::find($id);
+
+
+    $makers = Maker::all();
+    $models = Model::all();
+    $bodies = Body::all();
+
+    return view('vehicles.edit', compact('vehicle', 'makers', 'models', 'bodies'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(BasicRequest $request, string $id)
-    {
-        $vehicle  = Vehicle::find($id);
-        $vehicle->name = $request->input('reg_plate');
-        $vehicle->save();
+{
 
-        return redirect()->route('vehicles.index')->with('success', "{$vehicle->reg_plate} sikeresen módosítva");
-    }
+    $vehicle = Vehicle::find($id);
+    $vehicle->makers_id = $request->input('makers_id');
+    $vehicle->models_id = $request->input('models_id');
+    $vehicle->bodies_id = $request->input('bodies_id');
+    $vehicle->reg_plate = $request->input('reg_plate');
+    $vehicle->vin = $request->input('vin');
+    $vehicle->save();
+
+    return redirect()->route('vehicles.index')->with('success', "{$vehicle->reg_plate} sikeresen módosítva");
+}
+
 
     /**
      * Remove the specified resource from storage.
