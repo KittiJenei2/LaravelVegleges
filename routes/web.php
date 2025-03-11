@@ -35,6 +35,7 @@ Route::get('/bodies/{body}', [BodyController::class, 'show'])->name('bodies.show
 Route::resource('models', ModelController::class);
 
 Route::resource('vehicles', VehicleController::class);
+
 Route::get('/vehicles/create', [VehicleController::class, 'create'])->name('vehicles.create');
 
 
